@@ -16,30 +16,12 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        //
+        $response = ['message' =>  'index function'];
+        return response($response, 200);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return Students
-     */
-
-    protected function create(array $data)
-    {
-
-       /* return Students::forceCreate([
-
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => $data['password'],
-            'api_token' => Str::random(80),
 
 
-        ]);*/
-
-    }
 
 
     /**
@@ -50,7 +32,8 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $response = ['message' =>  'store function'];
+        return response($response, 200);
     }
 
     /**
@@ -61,19 +44,11 @@ class StudentsController extends Controller
      */
     public function show(Students $students)
     {
-        //
+        $response = ['message' =>  'show function'];
+        return response($response, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Students $students
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Students $students)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -84,7 +59,8 @@ class StudentsController extends Controller
      */
     public function update(Request $request, Students $students)
     {
-        //
+        $response = ['message' =>  'update function'];
+        return response($response, 200);
     }
 
     /**
@@ -95,6 +71,7 @@ class StudentsController extends Controller
      */
     public function destroy(Students $students)
     {
-        //
+        $response = ['message' =>  'destroy function'];
+        return response($response, 200);
     }
 }
