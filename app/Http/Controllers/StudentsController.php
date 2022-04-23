@@ -44,8 +44,10 @@ class StudentsController extends Controller
      */
     public function show(Students $students)
     {
+        $students = Students::all();
+
         $response = ['message' =>  'show function'];
-        return response($response, 200);
+        return response($students, 200);
     }
 
 

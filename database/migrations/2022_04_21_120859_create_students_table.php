@@ -25,12 +25,12 @@ return new class extends Migration
             $table->integer('roll_no');
             $table->string('section');
             $table->string('parents_name');
-            $table->integer('parents_phone');
+            $table->string('parents_phone');
             $table->string('parents_email');
             $table->string('exam_status')->nullable();
 
             //remember token
-            $table->string('remember_token');
+            $table->string('remember_token')->nullable();
 
             //for api token
             $table->string('api_token', 80)
