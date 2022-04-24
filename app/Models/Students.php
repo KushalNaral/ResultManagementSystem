@@ -15,19 +15,19 @@ class Students extends Model
 
     protected $fillable = [
         'name',
-'address',
-'class',
-'email',
-'password',
-'password_confirmation',
-'roll_no',
-'section',
-'parents_name',
-'parents_phone',
-'parents_email',
-'exam_status',
-'remember_token',
-'api_token',
+        'address',
+        'class',
+        'email',
+        'password',
+        'password_confirmation',
+        'roll_no',
+        'section',
+        'parents_name',
+        'parents_phone',
+        'parents_email',
+        'exam_status',
+        'remember_token',
+        'api_token',
 
     ];
 

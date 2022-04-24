@@ -36,7 +36,7 @@ class ApiAuthController extends Controller
 
         $student = Students::create($request->toArray());
 
-        $token = $student->createToken('Laravel Password Grant Client')->accessToken;
+        $token = $student->createToken('Student Register Token')->accessToken;
 
         $response = ['token' => $token];
 
@@ -65,7 +65,7 @@ class ApiAuthController extends Controller
 
             if( Hash::check($request->password , $students->password))
             {
-                $token = $students->createToken('Laravel Password Grant Client')->accessToken;
+                $token = $students->createToken('Login Access Token')->accessToken;
                 $reponse = [ 'token' => $token];
                 return response($reponse, 200);
             }

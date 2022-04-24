@@ -1,6 +1,8 @@
 <?php
 
+use App\Mail\ResultPublishMail;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
@@ -32,7 +34,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });*/
 
 
-
+Route::get('/send-mail/',function ()
+{
+   Mail::to('newuser@example.com')->send(new ResultPublishMail());
+   return 'The test mail for mailtrap has been sent';
+});
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
