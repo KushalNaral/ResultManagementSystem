@@ -46,8 +46,8 @@ class StudentsController extends Controller
     {
         $students = Students::all();
 
-        $response = ['message' =>  'show function'];
-        return response($students, 200);
+//        $response = ['message' =>  'show function'];
+        return $students;
     }
 
 
