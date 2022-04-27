@@ -14,7 +14,7 @@
         "tightenco/ziggy": "^1.0",
       "ext-http": "*"
     },
-    "require-dev": {
+    "require": {
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "^1.9",
         "laravel/sail": "^1.0.1",
