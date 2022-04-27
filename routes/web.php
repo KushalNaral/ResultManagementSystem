@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StudentsController;
 use App\Mail\ResultPublishMail;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Mail;
@@ -46,6 +47,7 @@ Route::get('/send-mail/',function ()
 //for homepage
 Route::get('/', [HomeController::class, 'index']);
 
+Route::get("/student/{id}", [StudentsController::class, 'individual']);
 
 
 Route::get('/dashboard', function () {

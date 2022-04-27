@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\Route;
         Route::get('/all', [StudentsController::class, 'show']);
 
         //individual student path
-        Route::get("/student/{{id}}", [StudentsController::class, 'individual']);
+
     });
 
 

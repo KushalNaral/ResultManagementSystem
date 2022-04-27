@@ -52,7 +52,7 @@ class StudentsController extends Controller
 
     public function individual(Students $students, Request $request, $id)
     {
-     return   $students = Students::where('id' . '=' . $id);
+     return   $students = Students::where('student_id' == $id)->get();
 
     }
     /**
