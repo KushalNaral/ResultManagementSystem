@@ -1,4 +1,4 @@
 <?php
 
 
-    echo "YOOOOOOOOOOOO";
+    echo "RESULT MANAGEMENT SYSTEM";
