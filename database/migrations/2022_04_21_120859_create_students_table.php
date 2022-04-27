@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('password_confirmation');
             $table->integer('roll_no')->nullable();
             $table->string('section')->nullable();
-
+            $table->integer('absent_days')->default('1');
 
             //non mandatory
             $table->string('parents_name')->nullable();
@@ -33,7 +33,8 @@ return new class extends Migration
             $table->string('exam_status')->nullable();
 
             //remember token
-            $table->string('remember_token');
+            $table->string('remember_token')->nullable();
+
 
             //for api token
             $table->string('api_token', 80)
