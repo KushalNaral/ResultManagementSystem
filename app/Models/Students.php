@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use http\Client\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 
 
@@ -30,7 +32,6 @@ class Students extends Model
         'api_token',
 
     ];
-
 
 
 

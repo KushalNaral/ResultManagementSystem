@@ -33,7 +33,6 @@ class ApiAuthController extends Controller
 
         $request['password'] = Hash::make($request['password']);
         $request['remember_token'] = Str::random(12);
-
         $student = Students::create($request->toArray());
 
         $token = $student->createToken('Student Register Token')->accessToken;
@@ -66,18 +65,20 @@ class ApiAuthController extends Controller
             if( Hash::check($request->password , $students->password))
             {
                 $token = $students->createToken('Login Access Token')->accessToken;
-                $reponse = [ 'token' => $token];
-                return response($reponse, 200);
+
+                $response = [ 'token' => $token];
+
+                return response($response, 200);
             }
             else
             {
-                $reponse = ['message' => 'Invalid Password Provided'];
+                $response = ['message' => 'Invalid Password Provided'];
             }
         }
         else
         {
-            $reponse = [ 'message' => 'Invalid User Provided'];
-            return response($reponse, 422);
+            $response = [ 'message' => 'Invalid User Provided'];
+            return response($response, 422);
         }
     }
 

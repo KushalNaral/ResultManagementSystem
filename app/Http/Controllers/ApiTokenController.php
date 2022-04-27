@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Students;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class ApiTokenController extends Controller
 {
-    //
+
 
 
     /**
@@ -16,6 +17,7 @@ class ApiTokenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
+
     public function update(Request $request)
     {
         $token = Str::random(80);

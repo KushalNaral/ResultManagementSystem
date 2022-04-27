@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Mail\ResultPublishMail;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Mail;
@@ -18,7 +19,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
@@ -39,6 +40,13 @@ Route::get('/send-mail/',function ()
    Mail::to('newuser@example.com')->send(new ResultPublishMail());
    return 'The test mail for mailtrap has been sent';
 });
+
+
+
+//for homepage
+Route::get('/', [HomeController::class, 'index']);
+
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
