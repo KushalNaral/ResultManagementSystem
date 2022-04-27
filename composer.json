@@ -11,10 +11,9 @@
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.8",
         "laravel/tinker": "^2.7",
-        "tightenco/ziggy": "^1.0",
-      "ext-http": "*"
+        "tightenco/ziggy": "^1.0"
     },
-    "require": {
+    "require_once": {
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "^1.9",
         "laravel/sail": "^1.0.1",
