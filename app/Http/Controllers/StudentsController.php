@@ -50,8 +50,11 @@ class StudentsController extends Controller
         return $students;
     }
 
+    public function individual(Students $students, Request $request, $id)
+    {
+     return   $students = Students::where('id' . '=' . $id);
 
-
+    }
     /**
      * Update the specified resource in storage.
      *

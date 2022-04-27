@@ -23,8 +23,7 @@ use Illuminate\Support\Facades\Route;
         return $request->user();
     });
 
-    Route::group(['middleware' => ['cors', 'json.response']], function ()
-    {
+    Route::group(['middleware' => ['cors', 'json.response']], function () use ($id) {
         //public routes
 
         Route::post('/login', [ApiAuthController::class, 'login'])->name('login.api');
@@ -32,7 +31,8 @@ use Illuminate\Support\Facades\Route;
         Route::post('/logout', [ApiAuthController::class, 'logout'])->name('logout.api');
         Route::get('/all', [StudentsController::class, 'show']);
 
-
+        //individual student path
+        Route::get("/student/{{$id}}", [StudentsController::class, 'individual']);
     });
 
 
