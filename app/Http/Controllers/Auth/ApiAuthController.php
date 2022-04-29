@@ -75,13 +75,13 @@ class ApiAuthController extends Controller
             return response(['errors' => $validator->errors()->all()], 422);
         }
 
-        $students = DB::table('students')->where('email', $request['email'])->first();
-        $email = $request['email'];
-        $password = $request['password'];
+        $students = DB::table('students')->where('email', $request->input('email'))->first();
+        $email = $request->input('email');
+        $password = $request->input('password');
 
-        if (Hash::check($password ,$request->password)) {
+        if (Hash::check($password ,$students->password)) {
 
-            $token = $students->createToken('Login Access Token')->accessToken;
+            $token = $students->createToken('Student has been logged in succesfully')->accessToken;
 
             $loginToken = Str::random(44);
 
@@ -96,8 +96,10 @@ class ApiAuthController extends Controller
     }
 
 
-
-
+   /* public function login(Request $request)
+    {
+        if(auth()->attempt(['email' => $request->input('email'), ]))
+    }*/
     //logout function
 
     public function logout(Request $request)
