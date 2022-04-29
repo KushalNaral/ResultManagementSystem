@@ -19,9 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('password');
-            $table->string('password_confirmation');
-            $table->string('address');
-            $table->string('phone_number');
+
 
             //remember token
             $table->string('remember_token')->nullable();

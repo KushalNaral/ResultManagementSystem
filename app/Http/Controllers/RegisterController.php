@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Students;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -11,13 +11,13 @@ class RegisterController extends Controller
 
     /**
      * @param  Request  $request
-     * @return \App\Students
+     * @return \App\User
      * */
 
     protected function create(Request $request)
     {
 
-        return Students::create([
+        return User::create([
 
            'name' => $request['name'],
            'email' => $request['email'],

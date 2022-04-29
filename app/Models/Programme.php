@@ -13,6 +13,7 @@ class Programme extends Model
 
     protected $fillable = [ ' semester' , 'branch'];
 
+    protected $hidden = [ 'created_at' , 'updated_at' , 'id' , 'students_id'];
 
 
 

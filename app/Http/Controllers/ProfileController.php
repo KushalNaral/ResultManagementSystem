@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Programme;
-use App\Models\Students;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
-    public function profile(Students $students , $branch , $semester , $id)
+    public function profile(User $user , $branch , $semester , $id)
     {
 
-        $students = Students::where('id', $id)->first();
+        $students = User::where('id', $id)->first();
         $branch = Programme::where('branch' , $branch)->first();
         $semester = Programme::where('semester' , $semester)->first();
 
+        //TODO fix errors as response
+        //TODO fix programme ans semester inside students
 
         if($branch)
         {
@@ -21,19 +23,13 @@ class ProfileController extends Controller
             {
                     if($students)
                         {
+                            $students->setAttribute('program' , $branch->branch);
+                            $students->setAttribute('semester' , $branch->semester);
 
-                        $student_info = [
-                                    'programme' => $branch['branch'],
 
-                                 [
-                                     'semester' => $semester['semester'],
-                                     [
-                                         'student_info' => $students
-                                     ]
-                                 ]
-                            ];
-                            return response($student_info);
+                            return response($students);
                         }
+
 
                     else
                         {

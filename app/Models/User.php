@@ -19,9 +19,20 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'address',
+        'class',
         'email',
-        'password',
+        'password_confirmation',
+        'roll_no',
+        'section',
+        'parents_name',
+        'parents_phone',
+        'parents_email',
+        'exam_status',
+        'api_token',
     ];
+
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,4 +52,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function classinfo()
+    {
+        return $this->belongsTo(Programme::class, 'students_id');
+    }
+
 }

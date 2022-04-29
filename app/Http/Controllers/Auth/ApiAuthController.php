@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use http\Client\Response;
 use Illuminate\Http\Request;
 use App\Models\Students;
@@ -36,7 +37,7 @@ class ApiAuthController extends Controller
         }
         if($request['password'] == $request['password_confirmation'])
         {
-            $regStudents = new Students();
+            $regStudents = new User();
 
             $regStudents['name'] = $request['name'];
             $regStudents['email'] = $request['email'];
@@ -62,7 +63,7 @@ class ApiAuthController extends Controller
 
     //login function
 
-    public function login(Request $request, Students $students)
+    public function login(Request $request, User $user)
     {
         $validator = Validator::make($request->all(), [
 
@@ -77,7 +78,7 @@ class ApiAuthController extends Controller
 
         $email = $request->input('email');
 
-        $students =Students::where('email', $email)->first();
+        $students =User::where('email', $email)->first();
         $password = $request->input('password');
 
 
@@ -117,5 +118,7 @@ class ApiAuthController extends Controller
         $response = ['message' => 'You have been logged out'];
         return response($response, 200);
     }
+
+    //api key matching
 
 }

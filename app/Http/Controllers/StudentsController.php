@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Students;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -39,14 +39,12 @@ class StudentsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Students $students
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Students $students)
+    public function show(User $user)
     {
-        $students = Students::all();
-
-//        $response = ['message' =>  'show function'];
+        $students = User::all();
         return $students;
     }
 
@@ -60,11 +58,7 @@ class StudentsController extends Controller
         return view('/login');
     }
 
-    public function individual(Students $students, Request $request, $id)
-    {
-     return   $students = Students::where('student_id' == $id)->get();
 
-    }
     /**
      * Update the specified resource in storage.
      *
@@ -72,7 +66,7 @@ class StudentsController extends Controller
      * @param Students $students
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Students $students)
+    public function update(Request $request, User $user)
     {
         $response = ['message' =>  'update function'];
         return response($response, 200);
@@ -81,10 +75,10 @@ class StudentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Students $students
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Students $students)
+    public function destroy(User $user)
     {
         $response = ['message' =>  'destroy function'];
         return response($response, 200);

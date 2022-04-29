@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Students;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -22,7 +23,7 @@ class ProgrammeFactory extends Factory
             'semester' => '4',
             'branch'  => 'BCA',
             'students_id' => function () {
-                return Students::factory()->create()->id;
+                return User::factory()->create()->id;
             }
         ];
     }
