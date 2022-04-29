@@ -46,6 +46,12 @@ return [
             'provider' => 'users',
             'hash' => true,
         ],
+
+        'students' => [
+            'driver' => 'token',
+            'provider' => 'users',
+            'hash' => true,
+        ],
     ],
 
     /*
@@ -71,10 +77,10 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+         'students' => [
+             'driver' => 'eloquent',
+             'model' => App\Models\Students::class,
+         ],
     ],
 
     /*

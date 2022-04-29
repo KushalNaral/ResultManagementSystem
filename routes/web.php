@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentsController;
 use App\Mail\ResultPublishMail;
 use Illuminate\Foundation\Application;
@@ -48,6 +50,16 @@ Route::get('/send-mail/',function ()
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/rms/register', [StudentsController::class, 'register']);
 Route::get('/rms/login', [StudentsController::class, 'login']);
+
+
+
+//route for individual students classes and branches will be added later
+//Route::get('/profile/{id}', [ProfileController::class, 'profile']);
+
+//actual route for a single user profile
+//
+Route::get('/rms/{branch}/{semester}/profile/{id}', [ProfileController::class, 'profile'])->name('profile');
+
 
 
 Route::get('/dashboard', function () {

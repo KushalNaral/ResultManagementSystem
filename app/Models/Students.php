@@ -40,6 +40,10 @@ class Students extends Model
         'password', 'remember_token',
     ];
 
+    public function classinfo()
+    {
+        return $this->belongsTo(Programme::class, 'students_id');
+    }
 
 
 

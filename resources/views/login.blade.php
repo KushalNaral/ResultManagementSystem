@@ -10,6 +10,8 @@
 <body>
     <h1>LOGIN PAGE</h1>
 <form method="post" action="{{ route('login.api')}}">
+
+    @csrf
     <h1>Please fill out the following information</h1>
 
     <div>

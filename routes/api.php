@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\ApiAuthController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\StudentsController;
 use Illuminate\Http\Request;
@@ -31,36 +32,12 @@ use Illuminate\Support\Facades\Route;
         Route::post('/logout', [ApiAuthController::class, 'logout'])->name('logout.api');
         Route::post('/register', [ApiAuthController::class, 'register'])->name('register.api');
 
-        //login
-
-//        Route::post('/rms/login', function (Request $request) {
-//
-//            if (auth()->attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
-//
-//                $student = auth()->user();
-//                $student->api_token = str_random(60);
-//                $student->save();
-//                return $student;
-//            }
-//
-//            return response()->json([
-//                'error' => 'Unauthenticated user',
-//                'code' => 401,
-//            ], 401);
-//        })->name('login.api');
-
-
-
-
-
-
-
-
-//    Route::get('/rd', [ApiAuthController::class, 'register']);
-
+        //all students
         Route::get('/all', [StudentsController::class, 'show']);
 
-        //individual student path
+        //individual students
+        Route::get('/{branch}/{semester}/{id}', [ProfileController::class, 'profile']);
+
 
     });
 

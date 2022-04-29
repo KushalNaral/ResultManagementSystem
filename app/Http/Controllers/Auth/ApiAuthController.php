@@ -51,7 +51,6 @@ class ApiAuthController extends Controller
             $token = $regStudents->createToken('Student has been registered successfully')->accessToken;
 
             $response = ['token' => $token];
-//        dd($response);
             return response($response , 200);
         }
         else
@@ -75,15 +74,13 @@ class ApiAuthController extends Controller
             return response(['errors' => $validator->errors()->all()], 422);
         }
 
-//        $students = DB::table('students')->where('email', $request->input('email'))->first();
+
         $email = $request->input('email');
 
         $students =Students::where('email', $email)->first();
         $password = $request->input('password');
 
-//       dd($students);
-//      dd($request);
-//        dd($password);
+
     if($students){
 
         if (Hash::check($password, $students->password_confirmation)) {
@@ -109,11 +106,6 @@ class ApiAuthController extends Controller
     }
     }
 
-
-   /* public function login(Request $request)
-    {
-        if(auth()->attempt(['email' => $request->input('email'), ]))
-    }*/
 
 
     //logout function
