@@ -50,6 +50,16 @@ class StudentsController extends Controller
         return $students;
     }
 
+    public function register()
+    {
+        return view('/register');
+    }
+
+    public function login()
+    {
+        return view('/login');
+    }
+
     public function individual(Students $students, Request $request, $id)
     {
      return   $students = Students::where('student_id' == $id)->get();

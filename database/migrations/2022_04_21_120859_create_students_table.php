@@ -17,20 +17,11 @@ return new class extends Migration
             $table->id();
 
             $table->string('name');
-            $table->string('address')->nullable();
-            $table->string('class')->nullable();
             $table->string('email');
             $table->string('password');
             $table->string('password_confirmation');
-            $table->integer('roll_no')->nullable();
-            $table->string('section')->nullable();
-            $table->integer('absent_days')->default('1');
-
-            //non mandatory
-            $table->string('parents_name')->nullable();
-            $table->string('parents_phone')->nullable();
-            $table->string('parents_email')->nullable();
-            $table->string('exam_status')->nullable();
+            $table->string('address');
+            $table->string('phone_number');
 
             //remember token
             $table->string('remember_token')->nullable();

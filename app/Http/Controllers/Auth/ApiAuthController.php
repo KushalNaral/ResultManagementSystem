@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use http\Client\Response;
 use Illuminate\Http\Request;
 use App\Models\Students;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Inertia\Testing\Concerns\Has;
+use mysql_xdevapi\Table;
 
 class ApiAuthController extends Controller
 {
@@ -22,7 +24,9 @@ class ApiAuthController extends Controller
 
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|unique:students|max:255',
-            'password' => 'required|min:6|string|confirmed'
+            'password' => 'required|min:6|string',
+            'address' => 'required|string',
+            'phone_number' => 'required|string',
 
         ]);
 
@@ -30,57 +34,68 @@ class ApiAuthController extends Controller
         {
             return response(['errors' => $validator->errors()->all()], 422);
         }
+        if($request['password'] == $request['password_confirmation'])
+        {
+            $regStudents = new Students();
 
-        $request['password'] = Hash::make($request['password']);
-        $request['remember_token'] = Str::random(12);
-        $student = Students::create($request->toArray());
+            $regStudents['name'] = $request['name'];
+            $regStudents['email'] = $request['email'];
+            $regStudents['address'] = $request['address'];
+            $regStudents['phone_number'] = $request['phone_number'];
+            $regStudents['password'] = $request['password'];
+            $regStudents['password_confirmation'] = Hash::make($request['password_confirmation']);
+            $regStudents['remember_token']   = Str::random(40);
+            $regStudents->save();
 
-        $token = $student->createToken('Student Register Token')->accessToken;
 
-        $response = ['token' => $token];
+            $token = $regStudents->createToken('Student has been registered successfully')->accessToken;
 
-        return response($response , 200);
+            $response = ['token' => $token];
+//        dd($response);
+            return response($response , 200);
+        }
+        else
+        {
+            return response(['errors' => 'The password doesnt match'], 422);
+        }
     }
 
 
     //login function
 
-    public function login(Request $request)
+    public function login(Request $request, Students $students)
     {
         $validator = Validator::make($request->all(), [
 
-           'email' => 'required|email|string|max:255',
-            'password' => 'required|string|min:6|confirmed'
+            'email' => 'required|email|string|max:255',
+            'password' => 'required'
         ]);
 
-        if($validator->fails())
-        {
+        if ($validator->fails()) {
             return response(['errors' => $validator->errors()->all()], 422);
         }
 
-        $students  = Students::where('email', $request->email)->first();
+        $students = DB::table('students')->where('email', $request['email'])->first();
+        $email = $request['email'];
+        $password = $request['password'];
 
-        if($students){
+        if (Hash::check($password ,$request->password)) {
 
-            if( Hash::check($request->password , $students->password))
-            {
-                $token = $students->createToken('Login Access Token')->accessToken;
+            $token = $students->createToken('Login Access Token')->accessToken;
 
-                $response = [ 'token' => $token];
+            $loginToken = Str::random(44);
 
-                return response($response, 200);
-            }
-            else
-            {
-                $response = ['message' => 'Invalid Password Provided'];
-            }
+            $students = ['token' => $token, 'loginToken' => $loginToken];
+
+            return response($students, 200);
         }
         else
         {
-            $response = [ 'message' => 'Invalid User Provided'];
-            return response($response, 422);
+          return  $response = ['message' => 'Invalid Password Provided'];
         }
     }
+
+
 
 
     //logout function

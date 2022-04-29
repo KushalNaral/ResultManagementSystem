@@ -19,23 +19,18 @@ class StudentsFactory extends Factory
      */
     public function definition()
     {
-        $class = Str::random(2) . random_int(0, 99);
+
+        $token = Str::random(40 );
         return [
 
             'name' => $this->faker->name,
-            'address' => $this->faker->word,
-            'class' => $class,
             'email' => $this->faker->email,
             'password' => bcrypt('password'),
             'password_confirmation' => bcrypt('password'),
-            'roll_no' => $this->faker->unique()->numberBetween(0 , 99),
-            'section' => $class,
-            'parents_name' =>$this->faker->name,
-            'parents_phone' => $this->faker->unique()->phoneNumber,
-            'parents_email' => $this->faker->unique()->email,
-            'exam_status' => 'N/A',
-
-
+            'address' => $this->faker->word(2),
+            'phone_number' => $this->faker->phoneNumber(),
+            'api_token' =>  $token,
+            'remember_token' => $token,
         ];
     }
 }

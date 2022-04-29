@@ -12,7 +12,8 @@
         "laravel/sanctum": "^2.8",
         "laravel/tinker": "^2.7",
         "tightenco/ziggy": "^1.0",
-        "fakerphp/faker": "^1.9.1"
+        "fakerphp/faker": "^1.9.1",
+        "ext-pdo": "*"
     },
     "require_once": {
         "laravel/breeze": "^1.9",

@@ -46,8 +46,8 @@ Route::get('/send-mail/',function ()
 
 //for homepage
 Route::get('/', [HomeController::class, 'index']);
-
-Route::get("/student/{id}", [StudentsController::class, 'individual']);
+Route::get('/rms/register', [StudentsController::class, 'register']);
+Route::get('/rms/login', [StudentsController::class, 'login']);
 
 
 Route::get('/dashboard', function () {

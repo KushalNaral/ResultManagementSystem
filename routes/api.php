@@ -28,13 +28,44 @@ use Illuminate\Support\Facades\Route;
         //public routes
 
         Route::post('/login', [ApiAuthController::class, 'login'])->name('login.api');
-        Route::post('/register', [RegisterController::class, 'create'])->name('register.api');
         Route::post('/logout', [ApiAuthController::class, 'logout'])->name('logout.api');
+        Route::post('/register', [ApiAuthController::class, 'register'])->name('register.api');
+
+        //login
+
+//        Route::post('/rms/login', function (Request $request) {
+//
+//            if (auth()->attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
+//
+//                $student = auth()->user();
+//                $student->api_token = str_random(60);
+//                $student->save();
+//                return $student;
+//            }
+//
+//            return response()->json([
+//                'error' => 'Unauthenticated user',
+//                'code' => 401,
+//            ], 401);
+//        })->name('login.api');
+
+
+
+
+
+
+
+
+//    Route::get('/rd', [ApiAuthController::class, 'register']);
+
         Route::get('/all', [StudentsController::class, 'show']);
 
         //individual student path
 
     });
+
+
+
 
 
     Route::middleware('auth:api')->group(function () {

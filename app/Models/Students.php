@@ -20,7 +20,6 @@ class Students extends Model
         'address',
         'class',
         'email',
-        'password',
         'password_confirmation',
         'roll_no',
         'section',
@@ -28,9 +27,17 @@ class Students extends Model
         'parents_phone',
         'parents_email',
         'exam_status',
-        'remember_token',
         'api_token',
 
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
     ];
 
 
