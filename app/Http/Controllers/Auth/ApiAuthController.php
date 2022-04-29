@@ -42,7 +42,7 @@ class ApiAuthController extends Controller
             $regStudents['email'] = $request['email'];
             $regStudents['address'] = $request['address'];
             $regStudents['phone_number'] = $request['phone_number'];
-            $regStudents['password'] = $request['password'];
+            $regStudents['password'] = Hash::make($request['password']);
             $regStudents['password_confirmation'] = Hash::make($request['password_confirmation']);
             $regStudents['remember_token']   = Str::random(40);
             $regStudents->save();
@@ -75,13 +75,20 @@ class ApiAuthController extends Controller
             return response(['errors' => $validator->errors()->all()], 422);
         }
 
-        $students = DB::table('students')->where('email', $request->input('email'))->first();
+//        $students = DB::table('students')->where('email', $request->input('email'))->first();
         $email = $request->input('email');
+
+        $students =Students::where('email', $email)->first();
         $password = $request->input('password');
 
-        if (Hash::check($password ,$students->password)) {
+//       dd($students);
+//      dd($request);
+//        dd($password);
+    if($students){
 
-            $token = $students->createToken('Student has been logged in succesfully')->accessToken;
+        if (Hash::check($password, $students->password_confirmation)) {
+
+            $token = $students->createToken('Student has been logged in successfully')->accessToken;
 
             $loginToken = Str::random(44);
 
@@ -89,10 +96,17 @@ class ApiAuthController extends Controller
 
             return response($students, 200);
         }
-        else
-        {
-          return  $response = ['message' => 'Invalid Password Provided'];
+        else{
+
+            return  $response = ['message' => 'Invalid Password Provided'];
+
         }
+
+    }
+    else
+    {   $response = 'Student does not exist';
+        return $response;
+    }
     }
 
 
@@ -100,6 +114,8 @@ class ApiAuthController extends Controller
     {
         if(auth()->attempt(['email' => $request->input('email'), ]))
     }*/
+
+
     //logout function
 
     public function logout(Request $request)
