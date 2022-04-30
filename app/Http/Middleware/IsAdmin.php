@@ -18,7 +18,7 @@ class IsAdmin
      */
     public function handle($id , Request $request)
     {
-
+        //validate isAdmin status in db
         $admin = Admin::where('id' , $id)->first();
 
         if($admin->isAdmin == '1')
