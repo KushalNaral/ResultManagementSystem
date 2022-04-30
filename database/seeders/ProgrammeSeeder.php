@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Programme;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,6 @@ class ProgrammeSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Programme::factory(10)->create();
     }
 }

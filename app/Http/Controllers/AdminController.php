@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
+
 
 class AdminController extends Controller
 {
@@ -12,9 +16,10 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Admin $admin , Request $request)
     {
-        //
+       return $admin = Admin::where('id', $request->input('id'));
+
     }
 
     /**
@@ -35,7 +40,35 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+
+            'email' => 'required|email|string|max:255',
+            'password' => 'required'
+
+        ]);
+
+        if ($validator->fails()) {
+            return response(['errors' => $validator->errors()->all()], 422);
+        }
+
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $admin = Admin::where('email' , $email)->first();
+
+        if($admin)
+        {
+            if(Hash::check($password, $admin->password))
+            {
+
+                $token = 'Admin has successfully logged in';
+                $loginToken = Str::random(44);
+
+                $admin->setAttribute('token' , $token);
+                $admin->setAttribute('loginToken' , $loginToken);
+
+                return response($admin, 200 );
+            }
+        }
     }
 
     /**
@@ -46,7 +79,9 @@ class AdminController extends Controller
      */
     public function show(Admin $admin)
     {
-        //
+         $admin = Admin::all();
+        return $admin_info = [ 'admins' => $admin ];
+
     }
 
     /**
@@ -82,4 +117,13 @@ class AdminController extends Controller
     {
         //
     }
+
+
+    public function login()
+    {
+        return view('/loginAdmin');
+    }
+
+
+
 }

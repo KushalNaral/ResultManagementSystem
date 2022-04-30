@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\ApiAuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
@@ -36,8 +37,15 @@ use Illuminate\Support\Facades\Route;
         Route::get('/all', [StudentsController::class, 'show']);
 
         //individual students
-        Route::get('/{branch}/{semester}/{id}', [ProfileController::class, 'profile']);
+        Route::get('/{branch}/{semester}/{id}', [ProfileController::class, 'userProfile']);
 
+        //admin routes
+        //.....
+        //show all admins
+        Route::get('/admins', [AdminController::class, 'show']);
+
+        //logged in admin info
+        Route::get('/adminProfile/{id}', [ProfileController::class, 'adminProfile'])->middleware('admin');
 
     });
 

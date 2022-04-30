@@ -2,20 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Programme;
 use App\Models\User;
+use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class ProfileController extends Controller
 {
-    public function profile(User $user , $branch , $semester , $id)
+    public function userProfile(User $user , $branch , $semester , $id)
     {
 
         $students = User::where('id', $id)->first();
         $branch = Programme::where('branch' , $branch)->first();
-        $semester = Programme::where('semester' , $semester)->first();
 
         //TODO fix errors as response
-        //TODO fix programme ans semester inside students
+        //TODO fix programme ans semester inside students --DONE
 
         if($branch)
         {
@@ -25,31 +29,41 @@ class ProfileController extends Controller
                         {
                             $students->setAttribute('program' , $branch->branch);
                             $students->setAttribute('semester' , $branch->semester);
-
-
                             return response($students);
                         }
-
-
                     else
                         {
-                            return response("Student doesnt exist");
+                            return $response = [ 'Error' => "Student doesnt exist"];
                         }
-
             }
                 else
                 {
-                    return response("Semester doesnt exist");
-
+                    return $response = [ 'Error' => "Semester doesnt exist"];
                 }
         }
         else
         {
-            return response("Program doesnt exist");
-
+            return $response = [ 'Error' => "Program doesnt exist"];
         }
 
 
+
+    }
+
+
+
+
+    public function adminProfile(  $id, Admin $admin )
+    {
+        $admin = Admin::where('id' , $id)->first();
+
+        if($admin)
+        {       $admin->setAttribute('Api_info' , 'Admin Profile for admin no'." ".$id);
+
+                return response($admin);
+        }
+
+        return $response = [ 'Error' => 'Admin not found'];
 
     }
 }

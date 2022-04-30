@@ -25,6 +25,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\ForceJsonResponse::class,
         //cors middleware REST Api
         \App\Http\Middleware\Cors::class,
+
     ];
 
     /**
@@ -69,7 +70,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-
+        'admin' => \App\Http\Middleware\IsAdmin::class,
         //for json request  middleware
         'json.response' => \App\Http\Middleware\ForceJsonResponse::class,
 

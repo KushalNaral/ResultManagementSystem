@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\ApiAuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -54,6 +55,11 @@ Route::get('/rms/login', [StudentsController::class, 'login']);
 Route::post('/rms/login', [LoginController::class, 'login'])->name('loginu');
 
 
+//admin login
+Route::get('/rms/adminlogin', [AdminController::class, 'login']);
+Route::post('/rms/adminlogin', [AdminController::class, 'store'])->name('adminLogin');
+//admin profile
+Route::get('rms/adminProfile/{id}', [ProfileController::class, 'adminProfile']);
 
 //route for individual students classes and branches will be added later
 //Route::get('/profile/{id}', [ProfileController::class, 'profile']);

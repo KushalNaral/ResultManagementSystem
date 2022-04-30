@@ -30,6 +30,7 @@ class User extends Authenticatable
         'parents_email',
         'exam_status',
         'api_token',
+        'isAdmin'
     ];
 
 
@@ -53,7 +54,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function classinfo()
+    public function Programme()
     {
         return $this->belongsTo(Programme::class, 'students_id');
     }
