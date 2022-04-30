@@ -50,8 +50,9 @@ class ApiAuthController extends Controller
 
 
             $token = $regStudents->createToken('Student has been registered successfully')->accessToken;
-
             $response = ['token' => $token];
+//            $response->setAttribite('_token' , '{{ csrf_token() }}');
+
             return response($response , 200);
         }
         else
